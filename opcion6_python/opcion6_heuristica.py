@@ -8,15 +8,20 @@ import time
 import random
 from pathlib import Path
 
-ART = Path(__file__).resolve().parent.parent / "artifacts"
-DATA = json.load(open(ART / "distances.json"))["D"]
+RUTA_RAIZ = Path(".")
 
-# Optimos de referencia calculados por la Opcion 3 (Held-Karp)
 try:
-    OPTIMOS = {int(k): v["costo"] for k, v in json.load(open(ART / "optimos.json")).items()}
+    DATA = json.load(open(RUTA_RAIZ / "distances.json"))["D"]
+except FileNotFoundError:
+    print("ERROR: No hay 'distances.json' subido")
+    raise
+
+# Óptimos de referencia calculados por la Opción 3 (Held-Karp)
+try:
+    OPTIMOS = {int(k): v["costo"] for k, v in json.load(open(RUTA_RAIZ / "optimos.json")).items()}
 except FileNotFoundError:
     OPTIMOS = {}
-    print("AVISO: ejecuta primero opcion3_optimo.py para tener los optimos de referencia.\n")
+    print("AVISO: No se encontró 'optimos.json' en colab")
 
 
 def sub(n):
@@ -57,7 +62,7 @@ def two_opt(ruta, D):
 
 
 def matriz_aleatoria(n, seed=123):
-    """Matriz simetrica NxN para demostrar escalabilidad (N grande sin optimo conocido)."""
+    """Matriz simétrica NxN para demostrar escalabilidad (N grande sin óptimo conocido)."""
     rng = random.Random(seed)
     M = [[0] * n for _ in range(n)]
     for i in range(n):
@@ -67,12 +72,13 @@ def matriz_aleatoria(n, seed=123):
     return M
 
 
+# En Colab podemos ejecutar el bloque directamente
 if __name__ == "__main__":
     # --- Parte 1: gap vs optimo (mismos grafos 4..14) ---
-    print("== Calidad de la heuristica vs optimo (mismo grafo canonico) ==")
-    print(f"{'N':>3}  {'heuristico':>10}  {'optimo':>7}  {'gap':>7}  {'tiempo_ms':>10}")
+    print("== Calidad de la heurística vs óptimo (mismo grafo canónico) ==")
+    print(f"{'N':>3}  {'heurístico':>10}  {'óptimo':>7}  {'gap':>7}  {'tiempo_ms':>10}")
     print("-" * 50)
-    for n in [4, 6, 8, 10, 12, 14]:
+    for n in [4, 6, 8, 10, 12, 14, 16, 18, 20]:
         D = sub(n)
         t0 = time.perf_counter()
         ruta = two_opt(nearest_neighbor(D), D)
@@ -82,8 +88,8 @@ if __name__ == "__main__":
         gap = f"{100 * (costo - opt) / opt:5.2f}%" if opt else "  n/d"
         print(f"{n:>3}  {costo:>10}  {str(opt):>7}  {gap:>7}  {ms:>10.3f}")
 
-    # --- Parte 2: escalabilidad (aqui el optimo ya no es calculable por fuerza bruta) ---
-    print("\n== Escalabilidad: N grande, solo tiempo + costo heuristico ==")
+    # --- Parte 2: escalabilidad ---
+    print("\n== Escalabilidad: N grande, solo tiempo + costo heurístico ==")
     print(f"{'N':>4}  {'costo_heur':>10}  {'tiempo_ms':>10}")
     print("-" * 32)
     for n in [50, 100, 200, 500]:
