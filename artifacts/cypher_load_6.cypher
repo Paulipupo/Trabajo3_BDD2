@@ -1,0 +1,18 @@
+// Grafo completo de 6 ciudades (submatriz canonica, semilla=42)
+MATCH (x) DETACH DELETE x;
+CREATE (c0:City {id:0, name:'C0'}), (c1:City {id:1, name:'C1'}), (c2:City {id:2, name:'C2'}), (c3:City {id:3, name:'C3'}), (c4:City {id:4, name:'C4'}), (c5:City {id:5, name:'C5'});
+MATCH (a:City {id:0}),(b:City {id:1}) CREATE (a)-[:ROAD {dist:76}]->(b);
+MATCH (a:City {id:0}),(b:City {id:2}) CREATE (a)-[:ROAD {dist:63}]->(b);
+MATCH (a:City {id:0}),(b:City {id:3}) CREATE (a)-[:ROAD {dist:61}]->(b);
+MATCH (a:City {id:0}),(b:City {id:4}) CREATE (a)-[:ROAD {dist:53}]->(b);
+MATCH (a:City {id:0}),(b:City {id:5}) CREATE (a)-[:ROAD {dist:84}]->(b);
+MATCH (a:City {id:1}),(b:City {id:2}) CREATE (a)-[:ROAD {dist:52}]->(b);
+MATCH (a:City {id:1}),(b:City {id:3}) CREATE (a)-[:ROAD {dist:31}]->(b);
+MATCH (a:City {id:1}),(b:City {id:4}) CREATE (a)-[:ROAD {dist:54}]->(b);
+MATCH (a:City {id:1}),(b:City {id:5}) CREATE (a)-[:ROAD {dist:38}]->(b);
+MATCH (a:City {id:2}),(b:City {id:3}) CREATE (a)-[:ROAD {dist:23}]->(b);
+MATCH (a:City {id:2}),(b:City {id:4}) CREATE (a)-[:ROAD {dist:47}]->(b);
+MATCH (a:City {id:2}),(b:City {id:5}) CREATE (a)-[:ROAD {dist:55}]->(b);
+MATCH (a:City {id:3}),(b:City {id:4}) CREATE (a)-[:ROAD {dist:60}]->(b);
+MATCH (a:City {id:3}),(b:City {id:5}) CREATE (a)-[:ROAD {dist:55}]->(b);
+MATCH (a:City {id:4}),(b:City {id:5}) CREATE (a)-[:ROAD {dist:74}]->(b);

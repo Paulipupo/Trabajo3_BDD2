@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
+
+# Notas: los artifacts SI se versionan (grafo compartido reproducible).
+# Si prefieres regenerarlos con `python gen_grafo.py`, descomenta:
+# artifacts/
