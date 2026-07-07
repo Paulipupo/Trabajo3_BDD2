@@ -2,17 +2,17 @@
 #
 # Regla de oro del trabajo: EL MISMO GRAFO de N ciudades se usa en TODAS las opciones.
 # Por eso todo parte de este único generador. El grafo de N ciudades es la submatriz
-# superior izquierda N x N de una matriz canónica de 14x14 con semilla fija
-# (grafos anidados: 4 ⊂ 6 ⊂ 8 ⊂ 10 ⊂ 12 ⊂ 14).
+# superior izquierda N x N de una matriz canónica de 20x20 con semilla fija
+# (grafos anidados: 4 ⊂ 6 ⊂ 8 ⊂ 10 ⊂ 12 ⊂ 14 ⊂ 16 ⊂ 18 ⊂ 20).
 #
 # Ejecutar:  python gen_grafo.py
 import json
 import numpy as np
 from pathlib import Path
 
-SEED = 42
-MAX_N = 14
-SIZES = [4, 6, 8, 10, 12, 14]
+SEED = 18
+MAX_N = 20
+SIZES = [4, 6, 8, 10, 12, 14, 16, 18, 20]
 OUT = Path(__file__).parent / "artifacts"
 OUT.mkdir(exist_ok=True)
 
@@ -23,9 +23,9 @@ D = (A + A.T) // 2                 # simetrizar -> dist(i,j) == dist(j,i)
 np.fill_diagonal(D, 0)
 D = D.astype(int).tolist()
 
-# Guardar matriz canónica completa (14x14)
+# Guardar matriz canónica completa (20x20) en JSON para referencia y depuración
 (OUT / "distances.json").write_text(json.dumps({"n": MAX_N, "D": D}, indent=2))
-print("Matriz 14x14 guardada en artifacts/distances.json")
+print("Matriz 20x20 guardada en artifacts/distances.json")
 
 
 def submatrix(n):
