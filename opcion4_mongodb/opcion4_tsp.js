@@ -11,7 +11,7 @@
 // $graphLookup de MongoDB NO resuelve TSP (no explora ciclos hamiltonianos de costo
 // minimo). El camino correcto y honesto para "todo en MongoDB" es JS en el shell.
 
-const N = 6;                                   // <- cambia por 4,6,8,10,12,14
+const N = 4;                                   // <- cambia por 4,6,8,10,12,14
 const conn = new Mongo();
 const db = conn.getDB("tsp");
 const doc = db.matrix.findOne({ _id: "D" + N });
