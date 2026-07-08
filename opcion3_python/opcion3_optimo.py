@@ -1,11 +1,9 @@
-# opcion3_optimo.py — OPCION 3: TSP OPTIMO en Python puro (Google Colab).
+# OPCIÓN 3: TSP OPTIMO en Python puro (Google Colab).
 #
 # Todo en Python. No se toca Neo4j ni MongoDB. Se lee la MISMA matriz canonica
 # (artifacts/distances.json) y se resuelve el optimo con programacion dinamica de
-# Held-Karp: O(2^n * n^2). Llega comodo a 14-16 ciudades. Se mide el tiempo.
-#
-# Estos optimos son la REFERENCIA para validar las opciones 1,2,4,5 y para medir
-# el gap de la opcion 6.
+# Held-Karp: O(2^n * n^2).
+
 import json
 import time
 import math
@@ -81,7 +79,7 @@ if __name__ == "__main__":
         resultados[n] = {"costo": costo, "tiempo_ms": round(ms, 3), "ruta": ruta}
         print(f"{n:>3}  {costo:>12}  {ms:>12.3f}  {ruta}")
 
-    # Persistir los optimos en la raíz de Colab para que otros scripts lo usen
+    # Persistir los optimos en la raíz de Colab 
     out = RUTA_RAIZ / "optimos.json"
     out.write_text(json.dumps(resultados, indent=2))
     print(f"\n Óptimos guardados en '{out}'")

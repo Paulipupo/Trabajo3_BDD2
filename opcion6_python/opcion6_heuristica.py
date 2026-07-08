@@ -1,8 +1,9 @@
-# opcion6_heuristica.py — OPCION 6: TSP HEURISTICO en Python puro (Google Colab).
+# OPCIÓN 6: TSP HEURISTICO en Python puro (Google Colab).
 #
 # Todo en Python. Heuristica escalable (NO garantiza optimo): Nearest Neighbor + 2-opt.
 # Se compara con el optimo de la Opcion 3 y se reporta que tan cerca quedo (gap %).
 # Debe soportar MUCHAS mas ciudades que las opciones exactas.
+
 import json
 import time
 import random
@@ -72,7 +73,6 @@ def matriz_aleatoria(n, seed=123):
     return M
 
 
-# En Colab podemos ejecutar el bloque directamente
 if __name__ == "__main__":
     # --- Parte 1: gap vs optimo (mismos grafos 4..14) ---
     print("== Calidad de la heurística vs óptimo (mismo grafo canónico) ==")

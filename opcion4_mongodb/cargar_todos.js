@@ -1,6 +1,6 @@
 // cargar_todos.js — carga las matrices N=4..20 en la coleccion tsp.matrix.
-// NO usa 'use tsp' (eso es atajo del shell, no es JS valido en un archivo).
 // Ejecutar:  mongosh opcion4_mongodb/cargar_todos.js
+
 const conn = new Mongo();
 const tdb  = conn.getDB("tsp");
 tdb.matrix.deleteOne({_id:'D4'});

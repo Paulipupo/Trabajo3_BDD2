@@ -1,6 +1,6 @@
-// benchmark_tsp.js — OPCION 4: benchmark del TSP (Held-Karp) en MongoDB puro.
+// OPCIÓN 4: benchmark del TSP (Held-Karp) en MongoDB puro.
 //
-// Corre TODOS los tamanos cargados (N=4..20) de una sola vez, mide el tiempo de
+// Corre TODOS los tamaños cargados (N=4..20) de una sola vez, mide el tiempo de
 // resolucion con Date.now() y arma la tabla final. Sin Python, sin conectores:
 // 100% JavaScript dentro de mongosh.
 //
@@ -52,7 +52,7 @@ for (const N of SIZES) {
   if (!doc) { print(`${N}\t-\t-\tNO CARGADO (corre cargar_todos.js)`); continue; }
   const D = doc.D;
 
-  // Para N pequeno el tiempo es sub-milisegundo: repetimos y promediamos.
+  // Para N pequeño el tiempo es sub-milisegundo: repetimos y promediamos.
   const reps = N <= 12 ? 200 : 1;
   let res;
   try {
